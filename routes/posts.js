@@ -110,9 +110,14 @@ try {
 }
 
 //delete the comment
-router.delete('/comment/:commentid', async (req, res) => {
-    await Comment.findByIdAndRemove(req.params.commentid);
-    res.send({ message: "comment successfully deleted" })
-})
+try {
+    router.delete('/comment/:commentid', async (req, res) => {
+        await Comment.findByIdAndRemove(req.params.commentid);
+        res.send({ message: "comment successfully deleted" })
+    })
+} catch (error) {
+    console.log(error)
+}
+
 
 module.exports = router;
