@@ -13,6 +13,14 @@ router.get('/', async (req, res) => {
     }
 })
 
+//Developed by Soban Arshad
+//sobanarshad85@gmail.com
+//+92 303 4645 060
+//https://www.facebook.com/sobanarshad85
+//https://www.twitter.com/sobanarshad85
+//https://www.github.com/sobanarshad85
+//https://www.linkedin.com/in/sobanarshad85
+
 router.get('/:postid', async (req, res) => {
     try {
         const posts = await Post.find({ _id: req.params.postid })
