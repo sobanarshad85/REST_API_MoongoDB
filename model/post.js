@@ -7,7 +7,14 @@ const post_schema = mongoose.Schema({
     content: {
         type: String,
         required: true
-    }
+    },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment",
+            required: "Comment is Required"
+        }
+    ]
 })
 
 module.exports = mongoose.model('Post', post_schema)

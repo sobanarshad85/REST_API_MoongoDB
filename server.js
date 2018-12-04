@@ -10,6 +10,7 @@ require('./mongo')
 
 //models
 require('./model/post')
+require('./model/Comments')
 
 //Developed by Soban Arshad
 //sobanarshad85@gmail.com

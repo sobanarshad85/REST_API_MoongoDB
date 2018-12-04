@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose')
 const Post = mongoose.model('Post')
+const Comment = mongoose.model('Comment')
 
 
 router.get('/', async (req, res) => {
@@ -66,5 +67,28 @@ router.post('/', async (req, res) => {
         console.log(error)
     }
 })
+
+//Comments
+
+
+router.post('/:postid/comment', async (req, res) => {
+    const post = await Post.findOne({ _id: req.params.postid })
+    //creat a comment
+    const comment = new Comment();
+    comment.content = req.body.content;
+    comment.post = post._id
+    await comment.save();
+    //Associate post with comment
+    post.comments.push(comment._id)
+    await post.save();
+    res.send(comment)
+})
+
+//read a comment
+router.get('/:postid/comment', async (req, res) => {
+    const post = await Post.findOne({ _id: req.params.postid }).populate("comments")
+    res.send(post)
+})
+
 
 module.exports = router;

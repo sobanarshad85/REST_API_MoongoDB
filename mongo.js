@@ -11,5 +11,5 @@ const mongoDBErrors = require('mongoose-mongodb-errors')
 //https://www.linkedin.com/in/sobanarshad85
 
 mongoos.Promise = global.Promise;
-mongoose.plugin(mongoDBErrors);
+// mongoose.plugin(mongoDBErrors);
 mongoos.connect(process.env.MONGOURI);
