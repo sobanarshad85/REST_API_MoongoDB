@@ -90,5 +90,29 @@ router.get('/:postid/comment', async (req, res) => {
     res.send(post)
 })
 
+//edit the comment 
+
+try {
+    router.put("/comments/:commentid", async (req, res) => {
+        const comment = await Comment.findOneAndUpdate(
+            {
+                _id: req.params.commentid
+            },
+            req.body,
+            {
+                new: true
+            }
+        )
+        res.send(comment)
+    })
+} catch (error) {
+    console.log(error)
+}
+
+//delete the comment
+router.delete('/comment/:commentid', async (req, res) => {
+    await Comment.findByIdAndRemove(req.params.commentid);
+    res.send({ message: "comment successfully deleted" })
+})
 
 module.exports = router;
